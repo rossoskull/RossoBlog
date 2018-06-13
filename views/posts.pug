@@ -1,0 +1,42 @@
+extends layout
+
+block content
+	.jumbotron
+		.container
+			!=messages()
+			h1 Manage Your Posts:
+			hr
+			h2 Add Post:
+			.form-group
+				form(action='/posts/add', method='post', enctype='multipart/form-data')
+					if errors
+						ul.alert
+							each error,i in errors
+								li.alert.alert-danger=error.msg
+					input.form-control(type='text', placeholder='Title of the new blog post', name='title', id='title', value=(posttitle)?posttitle:'')
+					br
+					select.form-control(name='category', id='category')
+						option(selected, value='') [Select Category]
+						if categories
+							each cat, i in categories
+								option(value=cat.category) #{cat.category}
+					br
+					textarea.form-control(placeholder='Body of the post', name='postbody', id='postbody')=(body)?body:''
+					br
+					input.form-control(type='file', name='mainimage', id='mainimage')
+					br
+					input.btn.btn-success.btn-lg(type='submit', name='submit', id='submit', value='Add Post')
+			hr
+			h2 Add Category:
+			.form-group
+				form(action='/posts/addcategory', method='post', enctype='multipart/form-data')
+					input.form-control(type='text', placeholder='New Category', name='category', id='category')
+					br
+					input.btn.btn-success.btn-lg(type='submit', name='submit', id='submit', value='Add Category')
+
+			script(src='/ckeditor5/ckeditor.js')
+			script
+				| ckeditor.create( document.querySelector( '#editor' ) )
+
+
+		

@@ -1,0 +1,41 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		title=title+' - RossoBlog'
+		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		.container.all-cont
+			nav.navbar.navbar-dark.navbar-expand-lg.bg-dark
+				.container
+					a.navbar-brand.text-light(href='/', title='Home :: RossoBlog')
+						img(src='/images/logo.png')
+					button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Click Me')
+						span.navbar-toggler-icon
+					#navbarNav.collapse.navbar-collapse
+						ul.nav.navbar-nav.navbar-right
+							li.nav-item(class=(title=='Home')?'active':'')
+								a.nav-link(href='/')  Home 
+							if !admin
+								li.nav-item(class=(title=='Admins')?'active':'')
+									a.nav-link(href='/admins') Manage
+							if admin
+								li.nav-item(class=(title=='Posts')?'active':'')
+									a.nav-link(href='/posts') My Posts
+								li.nav-item.dropdown(class=(title=='Admin')?'active':'')
+									a#navbarDropdownMenuLink.nav-link.dropdown-toggle(, href='', data-toggle='dropdown', aria-haspopup='true', aria-='', expanded='false')
+										| #{admin.fname + ' ' + admin.lname}
+									.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+										a.dropdown-item(href='/admins/dashboard') Dashboard
+										a.dropdown-item(href='/admins/logout') Log Out
+
+
+			.mainbody
+				block content
+			footer
+				p
+					| RossoSkull ©
+		script(type='text/javascript', src='/javascripts/jquery.js')
+		script(type='text/javascript', src='/javascripts/bootstrap.bundle.js')

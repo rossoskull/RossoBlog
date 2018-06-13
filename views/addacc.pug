@@ -1,0 +1,31 @@
+extends layout
+
+block content
+	.container
+		.jumbotron
+			.container
+				h3 Add Account
+				hr
+				!=messages()
+				.form-group
+					form(action='/admins/addadmin', method='post')
+						if errors
+							ul.alert
+								each error,i in errors
+									li.alert.alert-danger=error.msg
+						input.form-control(type='text', placeholder='First Name', name='fname', id='fname', value=(fname)?fname:'')
+						br
+						input.form-control(type='text', placeholder='Last Name', name='lname', id='lname', value=(lname)?lname:'')
+						br
+						select.form-control(name='class', id='class')
+							option(selected, value='moderator') Moderator
+							option(value='admin') Admin
+						br
+						input.form-control(type='text', placeholder='Username', name='uname', id='uname', value=(uname)?uname:'')
+						br
+						input.form-control(type='password', placeholder='Password', name='pass', id='pass')
+						br
+						input.form-control(type='password', placeholder='Retype Password', name='repass', id='repass')
+						br
+						input.btn.btn-success.btn-lg(type='submit', name='submit', id='submit', value='Add User Account')
+				hr

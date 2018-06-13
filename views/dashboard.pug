@@ -1,0 +1,60 @@
+extends layout
+
+block content
+	.container
+		.jumbotron
+			.container
+				h1 Dashboard - #{(admin.class=='admin')?'Admin':'Moderator'}
+				!=messages()
+			
+			.jumbotron
+				.container
+					h2 Manage Posts &bull; 
+						a.btn.btn-lg.btn-primary(href='/posts')  Add Post &raquo;
+					hr
+					.container
+						table.table.table-striped.table-hover
+							thead.thead-dark
+								tr
+									th.tth(scope='col') Title
+									th.ath(scope='col') Author
+									th.dth(scope='col') Date
+									th.opth(scope='col')
+								each post in posts	
+									tbody
+										tr
+											td.ttd=post.title
+											td.atd=post.author
+											td.dtd=moment(post.date).format("Do MMM, YYYY")
+											td.optd
+												a.btn.delglyph(href='/admins/rpost/'+post._id)
+													!=oct.trashcan.toSVG()
+				
+		if admin.class == 'admin'
+			.jumbotron
+				.container
+					h2 Manage Accounts &bull; 
+						a.btn.btn-lg.btn-primary(href='/admins/add')  Add Account &raquo;
+					hr
+					.container
+						table.table.table-striped.table-hover
+							thead.thead-dark
+								tr
+									th(scope='col') Name
+									th(scope='col') Username
+									th.dth(scope='col') Class
+									th.opth(scope='col')
+								each acc in admins	
+									tbody
+										tr
+											td=acc.fname + " " + acc.lname
+											td=acc.uname
+											td.dtd=(acc.class=='admin')?'Admin':'Moderator'
+											td
+												if admin._id != acc._id
+													a.btn.delglyph(href='/admins/racc/'+acc._id)
+														!=oct.trashcan.toSVG()
+																
+				
+				
+					
