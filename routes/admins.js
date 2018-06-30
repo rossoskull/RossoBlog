@@ -1,13 +1,13 @@
 var express = require('express');
 var app = express();
 var mongo = require('mongodb');
-var db = require('monk')('localhost/rossoblog');
+var db = require('monk')('mongo db uri');
 var bcrypt = require('bcrypt');
 var session = require('express-session');
 var octicons = require('octicons');
 
 app.use(session({
-	secret: 'abc1234',
+	secret: 'secret',
 	saveUinitialised: true,
 	resave: true
 }));

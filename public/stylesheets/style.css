@@ -135,5 +135,8 @@ footer {
 	max-height: 3.6em;
   	line-height: 1.8em;
    	text-overflow: ellipsis;
+}
 
+.categories {
+	list-style-type: none;
 }

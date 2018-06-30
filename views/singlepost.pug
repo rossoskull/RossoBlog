@@ -6,8 +6,9 @@ block content
 			.container
 				h2=post.title
 				h6.meta By #{post.author}, on #{moment(post.date).format("Do MMM, YYYY")} #{(post.category)?" In "+post.category:""}
-				hr
-				.container
-						img.mainimg(src='/images/uploads/'+post.image, align='centre')
+				if post.image != null
+					hr
+					.container
+							img.mainimg(src='/images/uploads/'+post.image, align='centre')
 				hr
 				!=post.body

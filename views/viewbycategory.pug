@@ -2,14 +2,10 @@ extends layout
 
 block content
 	.container
-		.jumbotron
-			h1.display-4 Hello, World!
-			p.lead Hi! I am Jay Mistry,
-			p A computer enthusiast, and a coder. I've been coding since I was of the age 12. I've learned all the things I know by myself. I also write poems. I also like reading books.
 		.row.jumbotron
 			.col-md-9
+				h2="Posts in : " + category
 				if posts.length > 0
-					h1.display-4 Recent Posts:
 					each post, i in posts
 						.jumbotron
 							.container

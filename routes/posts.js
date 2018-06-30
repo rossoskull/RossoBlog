@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var mongo = require('mongodb')
-var db = require('monk')('localhost/rossoblog');
+var db = require('monk')('mongo db uri');
 var markdown = require('markdown').markdown;
 var bcrypt = require('bcrypt');
 var moment = require('moment');
@@ -126,12 +126,37 @@ app.get('/view/:ID', function(req, res, next) {
 			res.render('singlepost', {
 				title: 'Posts',
 				post: post
-			})
+			});
 		} else {
 			res.send('Not found');
 		}
 
 	});
 });
+
+// View all posts in a single category
+app.get('/category/:CAT', function(req, res, next) {
+	var CAT = req.params.CAT;
+	var posts = db.get('posts');
+	posts.find({category: CAT}, {}, function(err, posts) {
+		if (err) throw err;
+		if ( posts ) {
+			var categories = db.get('categories');
+			categories.find({}, {}, function(err, categories) {
+				res.render('viewbycategory', {
+					title: 'View By Category - Posts',
+					posts: posts,
+					categories: categories,
+					category: CAT
+				});
+			});
+		} else {
+			res.send('Not found');
+		}
+
+	});
+});
+
+
 
 module.exports = app;
