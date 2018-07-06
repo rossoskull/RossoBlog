@@ -1,12 +1,12 @@
 # RossoBlog
 ***
->My blog created in NodeJS
->Templating Engine: Pug
->Also used Bootstrap CSS
+>My blog created in NodeJS. Visit the blog [here](www.rossoskull.me)  
+>Templating Engine: Pug 
+>Used Bootstrap CSS
 
 ## To install
 ***
-Install Dependencies-
+Install Dependencies-  
 ```npm install```
 
 ## To Run
