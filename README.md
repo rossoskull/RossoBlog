@@ -1,6 +1,6 @@
 # RossoBlog
 ***
->My blog created in NodeJS. Visit the blog [here](http://www.rossoskull.me)  
+>My blog created in NodeJS.
 >Templating Engine: Pug  
 >Used Bootstrap CSS
 
